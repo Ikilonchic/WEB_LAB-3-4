@@ -1,0 +1,16 @@
+# Server configuration ...
+port = ":8080"
+log_level = "debug"
+
+# Page configuration ...
+static = "web/static"
+templates = "web/"
+
+# Database configuration ...
+db = ""
+
+# Mail configuration ...
+mail_host = "smtp.gmail.com:587"
+
+email = "ikilonchic@gmail.com"
+password = ""
