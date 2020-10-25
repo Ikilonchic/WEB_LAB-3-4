@@ -6,12 +6,11 @@ import (
 
 	"github.com/BurntSushi/toml"
 
-	"github.com/ikilonchic/WEB_3/internal/server"
+	"github.com/ikilonchic/WEB_LAB-3-4/internal/server"
 )
 
 var (
 	configFile string
-	staticPath string
 )
 
 func init() {

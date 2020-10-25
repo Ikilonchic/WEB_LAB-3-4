@@ -1,6 +1,6 @@
-module github.com/ikilonchic/WEB_3
+module github.com/ikilonchic/WEB_LAB-3-4
 
-go 1.14
+go 1.15
 
 require (
 	github.com/BurntSushi/toml v0.3.1
