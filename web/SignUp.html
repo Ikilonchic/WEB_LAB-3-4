@@ -3,10 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" type="text/css" href="static/style/form.css">
 </head>
 <body>
-    Hi
+    <div class="wrapper">
+        <div class="container">
+            <form method="POST">
+                <label for="username">
+                    Username<em>*</em>:
+                </label>
+                <input type="text"  id="username" name="username" required="required" placeholder="Steve Jobs"          formmethod="POST">
+                <label for="email">
+                    Email<em>*</em>:
+                </label>
+                <input type="email" id="email"    name="email"    required="required" placeholder="example@example.com" formmethod="POST">
+                <label for="dob">
+                    Date of birthday<em>*</em>:
+                </label>
+                <input type="date"  id="dob"      name="dob"      required="required" placeholder="mm/dd/yyyy"          formmethod="POST">
+            </form>
+        </div>
+    </div>
 </body>
 </html>

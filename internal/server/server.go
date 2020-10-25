@@ -2,10 +2,11 @@ package server
 
 import (
 	"net/http"
-	"net/smtp"
 
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
+
+	"github.com/ikilonchic/WEB_LAB-3-4/internal/database"
 )
 
 type ctxKey int64
@@ -15,7 +16,8 @@ type Server struct {
 	config 		*Config
 	logger 		*logrus.Logger
 	router 		*mux.Router
-	mailClient  *smtp.Client
+	sql			*database.PostgresClient
+	redis		*database.RedisClient
 }
 
 // Start ...
@@ -24,18 +26,21 @@ func (serve *Server) Start() error {
 		return err
 	}
 
-	serve.configureRouter()
-	
-	if err := serve.configureMail(); err != nil {
+	if err := serve.configureDatabase(); err != nil {
 		return err
 	}
+
+	serve.configureRouter()
 
 	serve.logger.Infof("Server are starting on port%s ...", serve.config.Port)
 
 	return http.ListenAndServe(serve.config.Port, serve.router)
 }
 
-// Configure server //
+// Configure server: //
+// - logger;		 //
+// - databases;		 //
+// - router.		 //
 
 // Configure logger ...
 func (serve *Server) configureLogger() error {
@@ -45,6 +50,12 @@ func (serve *Server) configureLogger() error {
 	}
 
 	serve.logger.SetLevel(level)
+	return nil
+}
+
+// Configure database ...
+func (serve *Server) configureDatabase() error {
+	//////////////////////
 	return nil
 }
 
@@ -60,16 +71,6 @@ func (serve *Server) configureRouter() {
 
 	serve.router.HandleFunc("/signin", serve.signIn()).Methods("POST")
 	serve.router.HandleFunc("/signup", serve.signUp()).Methods("POST")
-}
-
-// Configure mail ...
-func (serve *Server) configureMail() error {
-	client, err := smtp.Dial(serve.config.MailHost)
-	if err != nil {
-		return err
-	}
-
-	return nil
 }
 
 // New ...

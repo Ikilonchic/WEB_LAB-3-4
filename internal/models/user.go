@@ -5,7 +5,7 @@ import (
 
 	"golang.org/x/crypto/bcrypt"
 
-	"github.com/ikilonchic/WEB_3/pkg/validation"
+	"github.com/ikilonchic/WEB_LAB-3-4/pkg/validation"
 )
 
 // User ...

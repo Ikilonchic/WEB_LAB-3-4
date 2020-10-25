@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/ikilonchic/WEB_3/internal/models"
+	"github.com/ikilonchic/WEB_LAB-3-4/internal/models"
 )
 
 func (serve *Server) signUp() http.HandlerFunc {
@@ -32,10 +32,10 @@ func (serve *Server) signUp() http.HandlerFunc {
 			Password: decReq.Password,
 		}
 
-		if err := serve.store.User().Create(user); err != nil {
-			serve.error(res, req, http.StatusUnprocessableEntity, err)
-			return
-		}
+		//if err := serve.sql.User().Create(user); err != nil {
+		//	serve.error(res, req, http.StatusUnprocessableEntity, err)
+		//	return
+		//}
 
 		user.Sanitize()
 		serve.respond(res, req, http.StatusCreated, user)
@@ -43,7 +43,17 @@ func (serve *Server) signUp() http.HandlerFunc {
 }
 
 func (serve *Server) signIn() http.HandlerFunc {
+	type request struct {
+		Email    		string    	`json:"email"`
+		Password 		string    	`json:"password"`
+	}
+
 	return func(res http.ResponseWriter, req *http.Request) {
-		
+		decReq := &request{}
+
+		if err := json.NewDecoder(req.Body).Decode(decReq); err != nil {
+			serve.error(res, req, http.StatusBadRequest, err)
+			return
+		}
 	}
 }

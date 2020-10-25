@@ -6,10 +6,8 @@ type Config struct {
 	LogLevel 		string `toml:"log_level"`
 	Static 			string `toml:"static"`
 	Templates 		string `toml:"templates"`
-	DatabaseURL 	string `toml:"db"`
-	MailHost 		string `toml:"mail_host"`
-	Email			string `toml:"email"`
-	Password 		string `toml:"password"`
+	sqlURL		 	string `toml:"sql"`
+	redisURL		string `toml:"redis"`
 }
 
 // NewConfig ...
@@ -19,9 +17,7 @@ func NewConfig() *Config {
 		LogLevel: "debug",
 		Static: "web/static",
 		Templates: "web/",
-		DatabaseURL: "",
-		MailHost: "",
-		Email: "",
-		Password: "",
+		sqlURL: "",
+		redisURL: "",
 	}
 }

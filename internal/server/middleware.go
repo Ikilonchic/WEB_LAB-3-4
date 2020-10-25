@@ -14,6 +14,7 @@ const (
 	ctxKeyRequestID
 )
 
+// Request ID ...
 func (serve *Server) setRequestID(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		id := uuid.New().String()
@@ -22,6 +23,7 @@ func (serve *Server) setRequestID(next http.Handler) http.Handler {
 	})
 }
 
+// Logging request ...
 func (serve *Server) logRequest(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		logger := serve.logger.WithFields(logrus.Fields{
