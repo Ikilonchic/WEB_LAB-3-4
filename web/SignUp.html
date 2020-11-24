@@ -3,27 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign Up</title>
-    <link rel="stylesheet" type="text/css" href="static/style/form.css">
+    <link rel="stylesheet" href="static/style/SignUp.css">
+    
 </head>
 <body>
-    <div class="wrapper">
-        <div class="container">
-            <form method="POST">
-                <label for="username">
-                    Username<em>*</em>:
-                </label>
-                <input type="text"  id="username" name="username" required="required" placeholder="Steve Jobs"          formmethod="POST">
-                <label for="email">
-                    Email<em>*</em>:
-                </label>
-                <input type="email" id="email"    name="email"    required="required" placeholder="example@example.com" formmethod="POST">
-                <label for="dob">
-                    Date of birthday<em>*</em>:
-                </label>
-                <input type="date"  id="dob"      name="dob"      required="required" placeholder="mm/dd/yyyy"          formmethod="POST">
-            </form>
-        </div>
-    </div>
+	<main>
+		<article>
+			<form id="postform" method="POST">
+				<p align = center class="nm"   >User Name:   <input id="username" type="text"     name="username" required formmethod="POST" placeholder="Example"></p>
+				<p align = center class="log"  >Email:       <input id="email"    type="email"    name="email"    required formmethod="POST" placeholder="example@exanple.com"></p>
+				<p align = center class="pass" >Password:    <input id="password" type="password" name="password" required formmethod="POST" placeholder="******************"></p>
+				<p align = center class="num"  >Your number: <input id="number"   type="tel"      name="number"   required formmethod="POST" placeholder="380 (XX) XXXX-XXX"></p>
+				
+				<div align = center class="radio">
+					<span>Sex</span>
+					<label class=male>
+						<input type="radio" name="male" value="true" required formmethod="POST">Male
+						<div class="radio-control male"></div>
+					</label>
+					<label class=female>
+						<input type="radio" name="male" value="false" required formmethod="POST">Female
+						<div class="radio-control female"></div>
+					</label>
+					</div>
+				
+					<div align = center class="dat">
+					<label for="date">Date of Birth: </label>
+					<input type="date" id="dob" name="dob" required formmethod="POST" />
+				</div>
+
+				<div class = stran>
+					<label for="country">Country</label>
+					<select name="country" required formmethod="POST">
+					  <option>Select your country</option>
+					  <option value="Украина">Ukrain</option> 
+					  <option value="Беларусь">USA</option> 
+					  <option value="Польша">Poland</option>
+					  <option value="Чехия">Czech</option>
+					</select> 
+					<div class="select-arrow"></div> 
+				</div> 
+
+				<div align = center class="textic">
+					<textarea name="about" placeholder="Something about you ..." required formmethod="POST"></textarea>
+				</div>
+
+				<p align = center><input type="submit" name="submit" value="Sign Up" class="button1"></p>
+				<p align = center class="href"><a href="/signin">Sign in</a></p>
+			</form>
+		</article>
+	</main>
 </body>
+<script src="static/script/forms.js"></script>
 </html>

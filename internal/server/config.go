@@ -7,17 +7,17 @@ type Config struct {
 	Static 			string `toml:"static"`
 	Templates 		string `toml:"templates"`
 	sqlURL		 	string `toml:"sql"`
-	redisURL		string `toml:"redis"`
+	tokenPassword   string `toml:"token_password"`
 }
 
 // NewConfig ...
 func NewConfig() *Config {
 	return &Config{
-		Port: ":8080",
-		LogLevel: "debug",
-		Static: "web/static",
-		Templates: "web/",
-		sqlURL: "",
-		redisURL: "",
+		Port: 			":8080",
+		LogLevel:		"debug",
+		Static: 		"web/static",
+		Templates: 		"web/",
+		sqlURL: 		"user=postgres password=12345 dbname=web port=5432 sslmode=disable",
+		tokenPassword: 	"supersecretpass",
 	}
 }

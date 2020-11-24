@@ -1,0 +1,102 @@
+body{
+	color: white;
+    background-image: url(../../static/img/5.jpg);
+    margin: 0; 
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+article{
+    background-color: rgb(26, 72, 99);
+   
+    padding-right: 5em;
+    padding-left: 5em;
+  	padding-bottom: 0em;
+   
+	display: inline-block;
+	padding-top: 1em;
+	position:absolute;
+	top: 50%;
+    left: 50%;  
+    margin-right: -50%;
+	transform: translate(-50%, -50%);
+	
+	opacity:60%;
+	box-shadow: 2px 1px 3px rgb(0, 0, 0);
+	-moz-box-shadow: 2px 1px 3px rgb(0, 0, 0);
+	-webkit-box-shadow: 2px 1px 3px rgb(0, 0, 0);  
+}
+
+.nm{
+	margin-left: -2em;
+}
+
+.log{
+	margin-left: 0em;
+}
+
+.pass{
+	margin-left: -1.4em;
+}
+
+.num {
+	margin-left: -2.8em;
+}
+
+.dat{
+	margin-top: 3em;
+	margin-bottom: 3em;
+}
+
+.textic textarea{
+	padding:2em ;
+}
+
+.male{
+	display: inline-block;
+	color: aliceblue;
+}
+
+.female{
+	display: inline-block;
+	color: aliceblue;
+}
+
+.stran{
+	margin-bottom: 3em;
+	color: aliceblue;
+}
+
+.button1{
+	margin-left: -0.5em;
+	background-color: #dddddd; 
+	border: none;
+	color: rgb(0, 0, 0);
+	padding: 8px 30px;
+	text-align: center;
+	text-decoration: none;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+
+	display: inline-block;
+	font-size: 15px;
+	transition: 1s;
+}
+
+.button1:hover{
+	background-color:  rgb(179, 230, 172); 
+}
+
+article p a{
+	text-decoration: none;
+	color: rgb(255, 255, 255);
+}
+
+article p a:hover{
+	color:#97a6cf; 
+}
+
+article p{
+  color: aliceblue;
+}

@@ -3,20 +3,23 @@ package models
 import (
 	"time"
 
+	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
+	"gorm.io/gorm"
 
 	"github.com/ikilonchic/WEB_LAB-3-4/pkg/validation"
 )
 
 // User ...
 type User struct {
-	ID              int        `json:"id"`
+	ID              string     `json:"id"`
 	UserName		string	   `json:"username"`
 	Email    		string     `json:"email"`
 	Password 		string     `json:"password"`
 	Number			string	   `json:"number"`
 	Male 	 		bool	   `json:"male"`
-	DateOfBirth	    time.Time  `json:"dof"`
+	Country			string	   `json:"country"`
+	DateOfBirth	    time.Time  `json:"dob"`
 	About			string	   `json:"about"`
 }
 
@@ -26,7 +29,7 @@ func (u *User) Validate() bool {
 }
 
 // BeforeCreate ...
-func (u *User) BeforeCreate() error {
+func (u *User) BeforeCreate(*gorm.DB) error {
 	if len(u.Password) > 0 {
 		encod, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.MinCost)
 		if err != nil {
@@ -35,6 +38,8 @@ func (u *User) BeforeCreate() error {
 
 		u.Password = string(encod)
 	}
+
+	u.ID = uuid.New().String()
 
 	return nil
 }

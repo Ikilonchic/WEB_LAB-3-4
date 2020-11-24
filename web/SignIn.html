@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="static/style/SignIn.css">
+        <title>Sign In</title>
+    </head>
 <body>
-    
+    <main>
+        <article>
+            <form id="postform" method="POST">
+                <p align = center class="log"  >Email:    <input type="email"    name="email"    required formmethod="POST" placeholder="example@exanple.com"></p>
+                <p align = center class="pass" >Password: <input type="password" name="password" required formmethod="POST" placeholder="******************"></p>
+                <p align = center><input type="submit" value="Sign In" class="button1"></p>
+                <p align = center class="href"><a href="/signup">Sign Up</a></p>
+            </form>
+        </article>
+    </main>
 </body>
+<script src="static/script/forms.js"></script>
 </html>

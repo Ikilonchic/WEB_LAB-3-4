@@ -5,19 +5,18 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
+	"gorm.io/gorm"
+	"gorm.io/driver/postgres"
 
-	"github.com/ikilonchic/WEB_LAB-3-4/internal/database"
+	"github.com/ikilonchic/WEB_LAB-3-4/internal/models"
 )
-
-type ctxKey int64
 
 // Server ...
 type Server struct {
 	config 		*Config
 	logger 		*logrus.Logger
 	router 		*mux.Router
-	sql			*database.PostgresClient
-	redis		*database.RedisClient
+	sql			*gorm.DB
 }
 
 // Start ...
@@ -26,11 +25,17 @@ func (serve *Server) Start() error {
 		return err
 	}
 
+	serve.logger.Info("Logger configured!")
+
 	if err := serve.configureDatabase(); err != nil {
 		return err
 	}
 
+	serve.logger.Info("Database connected!")
+
 	serve.configureRouter()
+
+	serve.logger.Info("Router configured!")
 
 	serve.logger.Infof("Server are starting on port%s ...", serve.config.Port)
 
@@ -55,7 +60,19 @@ func (serve *Server) configureLogger() error {
 
 // Configure database ...
 func (serve *Server) configureDatabase() error {
-	//////////////////////
+	sqlClient, err := gorm.Open(postgres.Open(serve.config.sqlURL), &gorm.Config{})
+	if err != nil {
+		return err
+	}
+
+	sqlClient.Logger.LogMode(1)
+
+	serve.sql = sqlClient
+
+	if err := serve.sql.AutoMigrate(&models.User{}); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -65,12 +82,16 @@ func (serve *Server) configureRouter() {
 
 	serve.router.Use(serve.setRequestID)
 	serve.router.Use(serve.logRequest)
+	serve.router.Use(serve.notFound)
+	serve.router.Use(serve.jwtAuthentication)
 
-	serve.router.HandleFunc("/signin", serve.getPage("SignIn")).Methods("GET")
-	serve.router.HandleFunc("/signup", serve.getPage("SignUp")).Methods("GET")
+	serve.router.HandleFunc("/", serve.getPage("Home")).Methods("GET", "OPTIONS")
+	serve.router.HandleFunc("/signin", serve.getPage("SignIn")).Methods("GET", "OPTIONS")
+	serve.router.HandleFunc("/signup", serve.getPage("SignUp")).Methods("GET", "OPTIONS")
 
 	serve.router.HandleFunc("/signin", serve.signIn()).Methods("POST")
 	serve.router.HandleFunc("/signup", serve.signUp()).Methods("POST")
+	serve.router.HandleFunc("/logout", serve.logout()).Methods("GET")
 }
 
 // New ...
